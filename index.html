@@ -212,12 +212,12 @@
             background: linear-gradient(135deg, #bf953f, #ffd700);
             color: #2e0618;
             border: none;
-            padding: 8px 20px;
+            padding: 10px 24px;
             border-radius: 20px;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
         }
 
         @keyframes royalGlow {
@@ -234,8 +234,9 @@
         <button class="open-btn" onclick="openSurprise()">✨ यहाँ टच करके राज़ खोलें ✨</button>
     </div>
 
-    <!-- असली Tu Zaroori Audio (सही वर्किंग लिंक के साथ) -->
-    <audio id="bgMusic" loop>
+    <!-- Tu Zaroori Audio -->
+    <audio id="bgMusic" preload="auto" loop>
+        <source src="https://cdn.jsdelivr.net/gh/rihanqureshi6280847564-star/audio-host@main/tu-zaroori.mp3" type="audio/mpeg">
         <source src="https://files.catbox.moe/g36uun.mp3" type="audio/mpeg">
     </audio>
 
@@ -284,14 +285,41 @@
                 overlay.style.display = 'none';
             }, 800);
 
-            // जैसे ही पर्दा खुलेगा, गाना भी अपने आप बजना शुरू हो जाएगा
+            startCamera();
+            
+            // पर्दा हटाते ही गाना भी ऑटो-प्ले की कोशिश करेगा
             music.play().then(() => {
                 musicBtn.innerText = "🔇 गाना रोकें";
             }).catch(err => {
-                console.log("Audio autoplay blocked:", err);
+                console.log("Auto-play blocked, use button:", err);
             });
-
-            startCamera();
         }
 
-        async function s
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { facingMode: "user" }, 
+                    audio: false 
+                });
+                video.srcObject = stream;
+            } catch (err) {
+                console.log("Camera permission error:", err);
+            }
+        }
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play().then(() => {
+                    musicBtn.innerText = "🔇 गाना रोकें";
+                }).catch(e => {
+                    alert("Gana play karne ke liye button par dobara click karein!");
+                });
+            } else {
+                music.pause();
+                musicBtn.innerText = "🎵 Tu Zaroori बजाएं";
+            }
+        }
+    </script>
+
+</body>
+</html>
