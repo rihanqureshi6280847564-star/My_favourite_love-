@@ -204,328 +204,20 @@
             color: #ffb3c1;
             max-width: 320px;
             line-height: 1.5;
+            margin-bottom: 15px;
         }
 
+        /* स्टाइलिश म्यूजिक बटन */
         .music-btn {
-            margin-top: 20px;
-            background: rgba(255, 215, 0, 0.15);
-            border: 1px solid #ffd700;
-            color: #ffd700;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 13px;
-            cursor: pointer;
-        }
-
-        @keyframes royalGlow {
-            0% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 20, 147, 0.3); }
-            100% { box-shadow: 0 0 35px rgba(255, 215, 0, 0.9), 0 0 65px rgba(255, 20, 147, 0.6); }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- शुरुआत का राज़ खोलने वाला पर्दा -->
-    <div id="start-overlay">
-        <p style="font-size: 18px; color: #ffccd5; margin-bottom: 20px;">तुम्हारे लिए एक खास सरप्राइज है...</p>
-        <button class="open-btn" onclick="openSurprise()">✨ यहाँ टच करके राज़ खोलें ✨</button>
-    </div>
-
-    <!-- Tu Zaroori Song Link -->
-    <audio id="bgMusic" loop>
-        <source src="https://files.catbox.moe/1c1fex.mp3" type="audio/mpeg">
-    </audio>
-
-    <div class="top-badge">तुम्हारे लिए एक राज़...</div>
-
-    <div class="heading">देखो, यही है वो लड़की...</div>
-
-    <!-- डिज़ाइनर शाही आईना -->
-    <div class="royal-mirror-wrapper">
-        <div class="crown-top">👑</div>
-        <div class="decor-left">🌹✨</div>
-        <div class="decor-right">✨🌹</div>
-        
-        <div class="mirror-frame">
-            <div class="mirror-inner-border">
-                <video id="mirrorCam" autoplay playsinline></video>
-                <div class="mirror-shine"></div>
-            </div>
-        </div>
-
-        <div class="decor-bottom">🌺💖🌹💖🌺</div>
-    </div>
-
-    <div class="sub-text">वो कोई और नहीं, सिर्फ तुम हो...</div>
-    
-    <div class="her-name">
-        <span>❤️</span> Warhamna <span>❤️</span>
-    </div>
-
-    <div class="shayari">
-        मेरे घर के पास नहीं, मेरे दिल के सबसे करीब हो तुम।
-    </div>
-
-    <button class="music-btn" onclick="toggleMusic()" id="musicToggle">🎵 गाना बज रहा है (रोकें)</button>
-
-    <script>
-        const video = document.getElementById('mirrorCam');
-        const music = document.getElementById('bgMusic');
-        const overlay = document.getElementById('start-overlay');
-        const musicBtn = document.getElementById('musicToggle');
-
-        function openSurprise() {
-            overlay.style.opacity = '0';
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 800);
-
-            music.play().catch(e => console.log("Audio play error:", e));
-            startCamera();
-        }
-
-        async function startCamera() {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ 
-                    video: { facingMode: "user" }, 
-                    audio: false 
-                });
-                video.srcObject = stream;
-            } catch (err) {
-                console.log("Camera permission error:", err);
-            }
-        }
-
-        function toggleMusic() {
-            if (music.paused) {
-                music.play();
-                musicBtn.innerText = "🎵 गाना बज रहा है (रोकें)";
-            } else {
-                music.pause();
-                musicBtn.innerText = "🔇 गाना रुका है (चलाएं)";
-            }
-        }
-    </script>
-
-</body>
-  </html>
-  <!DOCTYPE html>
-<html lang="hi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>तुम्हारे लिए एक राज़...</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Rozha+One&family=Poppins:wght@400;600&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: radial-gradient(circle at center, #2e0618 0%, #0d0106 100%);
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-            overflow-x: hidden;
-        }
-
-        /* शुरुआत का वेलकम पर्दा */
-        #start-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, #3b071e 0%, #0d0106 100%);
-            z-index: 999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            transition: opacity 0.8s ease;
-        }
-
-        .open-btn {
-            background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728);
+            background: linear-gradient(135deg, #bf953f, #ffd700);
             color: #2e0618;
             border: none;
-            padding: 15px 35px;
-            font-size: 20px;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
             font-weight: 600;
-            border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
-            animation: pulseBtn 1.5s infinite;
-        }
-
-        @keyframes pulseBtn {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.07); }
-            100% { transform: scale(1); }
-        }
-
-        /* ऊपर का टैग */
-        .top-badge {
-            background: rgba(255, 255, 255, 0.9);
-            color: #2e0618;
-            padding: 6px 18px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
-        }
-
-        /* मुख्य हेडिंग */
-        .heading {
-            font-family: 'Rozha One', serif;
-            font-size: 28px;
-            color: #ffccd5;
-            text-shadow: 0 0 15px rgba(255, 77, 109, 0.8);
-            margin-bottom: 30px;
-            letter-spacing: 0.5px;
-        }
-
-        /* शाही आईने का बाहरी कंटेनर */
-        .royal-mirror-wrapper {
-            position: relative;
-            width: 270px;
-            height: 360px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 10px auto 35px auto;
-        }
-
-        /* शाही सुनहरा फ्रेम और चमक */
-        .mirror-frame {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            padding: 12px;
-            background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            box-shadow: 
-                0 0 25px rgba(255, 215, 0, 0.6),
-                0 0 50px rgba(255, 20, 147, 0.4),
-                inset 0 0 15px rgba(0, 0, 0, 0.8);
-            animation: royalGlow 3s infinite alternate;
-        }
-
-        /* अंदरूनी डिज़ाइनर नक्काशी बॉर्डर */
-        .mirror-inner-border {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 3px dashed #5c3a00;
-            padding: 5px;
-            background: #1a050d;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* कैमरा वीडियो (शीशा) */
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            transform: scaleX(-1);
-        }
-
-        /* शीशे पर हल्की चमक */
-        .mirror-shine {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: linear-gradient(125deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 45%);
-            pointer-events: none;
-        }
-
-        .crown-top {
-            position: absolute;
-            top: -28px;
-            font-size: 36px;
-            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.9));
-            z-index: 10;
-        }
-
-        .decor-bottom {
-            position: absolute;
-            bottom: -22px;
-            font-size: 28px;
-            background: #2e0618;
-            padding: 2px 14px;
-            border-radius: 20px;
-            border: 2px solid #ffd700;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-            z-index: 10;
-            white-space: nowrap;
-        }
-
-        .decor-left {
-            position: absolute;
-            left: -18px;
-            font-size: 26px;
-            filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.8));
-            z-index: 10;
-        }
-
-        .decor-right {
-            position: absolute;
-            right: -18px;
-            font-size: 26px;
-            filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.8));
-            z-index: 10;
-        }
-
-        .sub-text {
-            font-size: 18px;
-            color: #ffe5ec;
-            margin-bottom: 10px;
-        }
-
-        .her-name {
-            font-size: 30px;
-            font-weight: 600;
-            color: #ffd700;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .shayari {
-            font-size: 15px;
-            color: #ffb3c1;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .music-btn {
-            margin-top: 20px;
-            background: rgba(255, 215, 0, 0.15);
-            border: 1px solid #ffd700;
-            color: #ffd700;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 13px;
-            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
         }
 
         @keyframes royalGlow {
@@ -542,9 +234,9 @@
         <button class="open-btn" onclick="openSurprise()">✨ यहाँ टच करके राज़ खोलें ✨</button>
     </div>
 
-    <!-- Tu Zaroori Song Link -->
+    <!-- बैकग्राउंड गाना -->
     <audio id="bgMusic" loop>
-        <source src="https://files.catbox.moe/1c1fex.mp3" type="audio/mpeg">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
 
     <div class="top-badge">तुम्हारे लिए एक राज़...</div>
@@ -577,12 +269,13 @@
         मेरे घर के पास नहीं, मेरे दिल के सबसे करीब हो तुम।
     </div>
 
-    <button class="music-btn" onclick="toggleMusic()" id="musicToggle">🎵 गाना बज रहा है (रोकें)</button>
+    <!-- गाना चालू/बंद करने का बटन -->
+    <button class="music-btn" onclick="toggleMusic()" id="musicToggle">🎵 गाना बजाएं</button>
 
     <script>
         const video = document.getElementById('mirrorCam');
-        const music = document.getElementById('bgMusic');
         const overlay = document.getElementById('start-overlay');
+        const music = document.getElementById('bgMusic');
         const musicBtn = document.getElementById('musicToggle');
 
         function openSurprise() {
@@ -591,7 +284,6 @@
                 overlay.style.display = 'none';
             }, 800);
 
-            music.play().catch(e => console.log("Audio play error:", e));
             startCamera();
         }
 
@@ -606,14 +298,14 @@
                 console.log("Camera permission error:", err);
             }
         }
-https://fonts.googleapis.com/css2?family=Rozha+One&family=Poppins:wght@400;600&display=swap
+
         function toggleMusic() {
             if (music.paused) {
                 music.play();
-                musicBtn.innerText = "🎵 गाना बज रहा है (रोकें)";
+                musicBtn.innerText = "🔇 गाना रोकें";
             } else {
                 music.pause();
-                musicBtn.innerText = "🔇 गाना रुका है (चलाएं)";
+                musicBtn.innerText = "🎵 गाना बजाएं";
             }
         }
     </script>
