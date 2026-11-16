@@ -234,7 +234,7 @@
         <button class="open-btn" onclick="openSurprise()">✨ यहाँ टच करके राज़ खोलें ✨</button>
     </div>
 
-    <!-- असली Tu Zaroori Audio -->
+    <!-- असली Tu Zaroori Audio (सही वर्किंग लिंक के साथ) -->
     <audio id="bgMusic" loop>
         <source src="https://files.catbox.moe/g36uun.mp3" type="audio/mpeg">
     </audio>
@@ -284,32 +284,14 @@
                 overlay.style.display = 'none';
             }, 800);
 
+            // जैसे ही पर्दा खुलेगा, गाना भी अपने आप बजना शुरू हो जाएगा
+            music.play().then(() => {
+                musicBtn.innerText = "🔇 गाना रोकें";
+            }).catch(err => {
+                console.log("Audio autoplay blocked:", err);
+            });
+
             startCamera();
         }
 
-        async function startCamera() {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ 
-                    video: { facingMode: "user" }, 
-                    audio: false 
-                });
-                video.srcObject = stream;
-            } catch (err) {
-                console.log("Camera permission error:", err);
-            }
-        }
-
-        function toggleMusic() {
-            if (music.paused) {
-                music.play();
-                musicBtn.innerText = "🔇 गाना रोकें";
-            } else {
-                music.pause();
-                musicBtn.innerText = "🎵 Tu Zaroori बजाएं";
-            }
-        }
-    </script>
-
-</body>
-    </html>
-    
+        async function s
